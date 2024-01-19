@@ -1,0 +1,36 @@
+server:
+  port: 8082
+spring:
+  application:
+      name: upload-download-files
+  datasource:
+      password: password
+      url: jdbc:postgresql://localhost:5432/stc-assessments
+      #url: jdbc:postgresql://host.docker.internal:5432/postgress?ssl=false
+      username: user
+  jpa:
+      hibernate:
+          ddl-auto: update
+          #ddl-auto: create-drop
+      properties:
+           hibernate:
+               dialect: org.hibernate.dialect.PostgreSQLDialect
+               format_sql: true
+      show-sql: true
+
+
+  ## MULTIPART (MultipartProperties)
+  # Enable multipart uploads
+  servlet:
+    multipart:
+      enabled: true
+  # Threshold after which files are written to disk.
+      file-size-threshold: 2KB
+  # Max file size.
+      max-file-size: 200MB
+  # Max Request Size
+      max-request-size: 215MB
+  # All files uploaded through the REST API will be stored in this directory
+file:
+  upload-dir: /home/stc/media/upload
+
